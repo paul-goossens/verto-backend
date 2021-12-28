@@ -1,4 +1,4 @@
-package com.example.verto;
+package com.verto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,6 @@ public class VertoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(VertoApplication.class, args);
-        System.out.println("Hello world!");
     }
 
 }

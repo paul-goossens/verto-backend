@@ -1,4 +1,4 @@
-package com.example.verto;
+package com.verto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
