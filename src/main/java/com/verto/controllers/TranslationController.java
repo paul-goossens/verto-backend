@@ -1,7 +1,9 @@
-package com.verto.controller;
+package com.verto.controllers;
 
-import com.verto.model.TranslationModel;
-import com.verto.service.TranslationService;
+import com.verto.models.TranslationModel;
+import com.verto.services.LanguageService;
+import com.verto.services.TranslationService;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -11,9 +13,11 @@ import java.util.UUID;
 public class TranslationController {
 
     private final TranslationService translationService;
+    private final LanguageService languageService;
 
-    public TranslationController(TranslationService translationService) {
+    public TranslationController(TranslationService translationService, LanguageService languageService) {
         this.translationService = translationService;
+        this.languageService = languageService;
     }
 
     @GetMapping("")
@@ -26,7 +30,8 @@ public class TranslationController {
         String guid = UUID.randomUUID().toString();
         t.setGuid(guid);
         t.setIsGroup(false);
-        // this.translationService.insertIntoDatabase(t);
+//        SqlRowSet sqlRow = this.languageService.selectFromDatabase(t.getLanguageGuid());
+        this.translationService.insertIntoDatabase(t);
         return new TranslationModel(t.getGuid(), t.getKey(), t.getValue(), t.getIsGroup(), t.getLanguageGuid());
     }
 

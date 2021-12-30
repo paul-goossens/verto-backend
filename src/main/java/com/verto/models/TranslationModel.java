@@ -1,4 +1,4 @@
-package com.verto.model;
+package com.verto.models;
 
 public class TranslationModel {
     private String guid;

@@ -1,4 +1,4 @@
-package com.verto.config;
+package com.verto.configs;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;

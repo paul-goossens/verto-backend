@@ -1,6 +1,6 @@
-package com.verto.service;
+package com.verto.services;
 
-import com.verto.model.TranslationModel;
+import com.verto.models.TranslationModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
