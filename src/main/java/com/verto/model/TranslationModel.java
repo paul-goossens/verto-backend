@@ -1,24 +1,34 @@
 package com.verto.model;
 
 public class TranslationModel {
-    private Integer id;
+    private String guid;
+    private String key;
     private String value;
-    private Integer labelId;
-    private Integer languageId;
+    private Boolean isGroup;
+    private String languageGuid;
 
-    public TranslationModel(Integer id, String value, Integer labelId, Integer languageId) {
-        this.id = id;
+    public TranslationModel(String guid, String key, String value, Boolean isGroup, String languageGuid) {
+        this.guid = guid;
+        this.key = key;
         this.value = value;
-        this.labelId = labelId;
-        this.languageId = languageId;
+        this.isGroup = isGroup;
+        this.languageGuid = languageGuid;
     }
 
-    public Integer getId() {
-        return id;
+    public String getGuid() {
+        return guid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getValue() {
@@ -29,19 +39,19 @@ public class TranslationModel {
         this.value = value;
     }
 
-    public Integer getLabelId() {
-        return labelId;
+    public Boolean getIsGroup() {
+        return this.isGroup;
     }
 
-    public void setLabelId(Integer labelId) {
-        this.labelId = labelId;
+    public void setIsGroup(Boolean isGroup) {
+        this.isGroup = isGroup;
     }
 
-    public Integer getLanguageId() {
-        return languageId;
+    public String getLanguageGuid() {
+        return languageGuid;
     }
 
-    public void setLanguageId(Integer languageId) {
-        this.languageId = languageId;
+    public void setLanguageGuid(String languageGuid) {
+        this.languageGuid = languageGuid;
     }
 }

@@ -13,11 +13,11 @@ public class TranslationService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public int insertIntoDatabase(TranslationModel translation) {
+    public int insertIntoDatabase(TranslationModel t) {
         String sql = """
-                INSERT INTO translations(value, label_id, language_id) VALUES (?, ?, ?);
+                INSERT INTO translations(guid, key, value, is_group, language_guid) VALUES (?, ?, ?, ?, ?);
                 """;
-        return jdbcTemplate.update(sql, translation.getValue(), translation.getLabelId(), translation.getLanguageId());
+        return jdbcTemplate.update(sql, t.getGuid(), t.getKey(), t.getValue(), t.getIsGroup(), t.getLanguageGuid());
     }
 
 }
