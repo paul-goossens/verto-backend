@@ -1,11 +1,12 @@
 package com.verto.controllers;
 
+import com.verto.models.LanguageModel;
 import com.verto.models.TranslationModel;
 import com.verto.services.LanguageService;
 import com.verto.services.TranslationService;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,9 +21,9 @@ public class TranslationController {
         this.languageService = languageService;
     }
 
-    @GetMapping("")
-    public String list() {
-        return "list";
+    @GetMapping("/{languageGuid}")
+    public List<TranslationModel> list(@PathVariable("languageGuid") String languageGuid) {
+        return this.translationService.selectAllFromDatabase(languageGuid);
     }
 
     @PostMapping("/create")
@@ -30,14 +31,15 @@ public class TranslationController {
         String guid = UUID.randomUUID().toString();
         t.setGuid(guid);
         t.setIsGroup(false);
-//        SqlRowSet sqlRow = this.languageService.selectFromDatabase(t.getLanguageGuid());
         this.translationService.insertIntoDatabase(t);
-        return new TranslationModel(t.getGuid(), t.getKey(), t.getValue(), t.getIsGroup(), t.getLanguageGuid());
-    }
 
-    @GetMapping("/get")
-    public String get() {
-        return "get";
+        return new TranslationModel(
+                t.getGuid(),
+                t.getKey(),
+                t.getValue(),
+                t.getIsGroup(),
+                t.getLanguageGuid()
+        );
     }
 
 }
