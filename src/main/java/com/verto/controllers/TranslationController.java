@@ -39,4 +39,9 @@ public class TranslationController {
         );
     }
 
+    @DeleteMapping("/{guid}")
+    public void delete(@PathVariable("guid") String guid) {
+        this.translationService.deleteFromDatabase(guid);
+    }
+
 }
