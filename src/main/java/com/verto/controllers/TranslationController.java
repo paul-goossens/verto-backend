@@ -28,7 +28,7 @@ public class TranslationController {
         t.setGuid(guid);
         t.setIsGroup(false);
 
-        Integer insert = this.translationService.insertIntoDatabase(t);
+        this.translationService.insertIntoDatabase(t);
 
         return new TranslationModel(
                 t.getGuid(),
