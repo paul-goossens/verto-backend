@@ -1,8 +1,6 @@
 package com.verto.controllers;
 
-import com.verto.models.LanguageModel;
 import com.verto.models.TranslationModel;
-import com.verto.services.LanguageService;
 import com.verto.services.TranslationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +12,9 @@ import java.util.UUID;
 public class TranslationController {
 
     private final TranslationService translationService;
-    private final LanguageService languageService;
 
-    public TranslationController(TranslationService translationService, LanguageService languageService) {
+    public TranslationController(TranslationService translationService) {
         this.translationService = translationService;
-        this.languageService = languageService;
     }
 
     @GetMapping("/{languageGuid}")
@@ -27,11 +23,12 @@ public class TranslationController {
     }
 
     @PostMapping("/create")
-    public TranslationModel create(@RequestBody TranslationModel t) {
+    public TranslationModel create(@RequestBody TranslationModel t) throws Exception {
         String guid = UUID.randomUUID().toString();
         t.setGuid(guid);
         t.setIsGroup(false);
-        this.translationService.insertIntoDatabase(t);
+
+        Integer insert = this.translationService.insertIntoDatabase(t);
 
         return new TranslationModel(
                 t.getGuid(),

@@ -16,7 +16,7 @@ public class LanguageService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public int insertIntoDatabase(LanguageModel l) {
+    public Integer insertIntoDatabase(LanguageModel l) {
         return jdbcTemplate.update(
                 "INSERT INTO languages(guid, value) VALUES (?, ?);",
                 l.getGuid(),
