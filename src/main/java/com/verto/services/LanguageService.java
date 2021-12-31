@@ -39,4 +39,13 @@ public class LanguageService {
         );
     }
 
+    public Boolean deleteFromDatabase(String guid) {
+        int count = jdbcTemplate.update(
+                "DELETE FROM languages WHERE guid = ?",
+                guid
+        );
+
+        return count == 1;
+    }
+
 }

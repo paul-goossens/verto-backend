@@ -33,6 +33,13 @@ public class TranslationService {
         );
     }
 
+    public List<TranslationModel> selectAllFromDatabase(String languageGuid) {
+        return jdbcTemplate.query(
+                "SELECT * FROM translations WHERE language_guid = '" + languageGuid + "'",
+                new TranslationRowMapper()
+        );
+    }
+
     public Boolean deleteFromDatabase(String guid) {
         int count = jdbcTemplate.update(
                 "DELETE FROM translations WHERE guid = ?",
@@ -40,13 +47,6 @@ public class TranslationService {
         );
 
         return count == 1;
-    }
-
-    public List<TranslationModel> selectAllFromDatabase(String languageGuid) {
-        return jdbcTemplate.query(
-                "SELECT * FROM translations WHERE language_guid = '" + languageGuid + "'",
-                new TranslationRowMapper()
-        );
     }
 
     private Boolean isDuplicate(TranslationModel t) {

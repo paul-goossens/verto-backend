@@ -35,4 +35,9 @@ public class LanguageController {
         return this.languageService.selectFromDatabase(guid);
     }
 
+    @DeleteMapping("/{guid}")
+    public void delete(@PathVariable("guid") String guid) {
+        this.languageService.deleteFromDatabase(guid);
+    }
+
 }
