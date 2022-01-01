@@ -16,13 +16,7 @@ public class TranslationService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Integer insertIntoDatabase(TranslationModel t) throws Exception {
-        Boolean isDuplicate = this.isDuplicate(t);
-
-        if (isDuplicate) {
-            throw new Exception("The combination of 'key' and 'languageGuid' already exist.");
-        }
-
+    public Integer insertIntoDatabase(TranslationModel t) {
         return jdbcTemplate.update(
                 "INSERT INTO translations(guid, key, value, is_group, language_guid) VALUES (?, ?, ?, ?, ?)",
                 t.getGuid(),
@@ -61,12 +55,10 @@ public class TranslationService {
         String sql = "";
 
         if (t.getKey() != null) {
-            System.out.println(t.getKey());
             sql += "key = '" + t.getKey() + "', ";
         }
 
         if (t.getValue() != null) {
-            System.out.println(t.getValue());
             sql += "value = '" + t.getValue() + "', ";
         }
 
@@ -77,7 +69,7 @@ public class TranslationService {
         return count >= 1;
     }
 
-    private Boolean isDuplicate(TranslationModel t) {
+    public Boolean isDuplicate(TranslationModel t) {
         Integer count = jdbcTemplate.queryForObject(
                 "SELECT COUNT(*) FROM translations WHERE key = ? AND language_guid = ?",
                 Integer.class,

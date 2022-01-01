@@ -1,6 +1,7 @@
 package com.verto.controllers;
 
 import com.verto.models.TranslationModel;
+import com.verto.services.LanguageService;
 import com.verto.services.TranslationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +13,11 @@ import java.util.UUID;
 public class TranslationController {
 
     private final TranslationService translationService;
+    private final LanguageService languageService;
 
-    public TranslationController(TranslationService translationService) {
+    public TranslationController(TranslationService translationService, LanguageService languageService) {
         this.translationService = translationService;
+        this.languageService = languageService;
     }
 
     @GetMapping("/{languageGuid}/language")
@@ -31,7 +34,29 @@ public class TranslationController {
     public TranslationModel create(@RequestBody TranslationModel t) throws Exception {
         String guid = UUID.randomUUID().toString();
         t.setGuid(guid);
-        t.setIsGroup(false);
+
+        if (t.getIsGroup() == null) {
+            t.setIsGroup(false);
+        }
+
+        if (t.getIsGroup() && t.getValue() != null) {
+            throw new Exception("Property 'value' must be 'null' when 'isGroup' is 'true'");
+        }
+
+        if (t.getLanguageGuid() == null) {
+            throw new Exception("Property 'languageGuid' is required.");
+        }
+
+        String languageGuid = t.getLanguageGuid();
+        Boolean isValid = this.languageService.isValid(languageGuid);
+        if (!isValid) {
+            throw new Exception(("Property 'languageGuid' is invalid."));
+        }
+
+        Boolean isDuplicate = this.translationService.isDuplicate(t);
+        if (isDuplicate) {
+            throw new Exception("The combination of 'key' and 'languageGuid' already exist.");
+        }
 
         this.translationService.insertIntoDatabase(t);
 

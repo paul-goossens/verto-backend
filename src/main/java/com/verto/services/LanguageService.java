@@ -2,6 +2,7 @@ package com.verto.services;
 
 import com.verto.mappers.LanguageRowMapper;
 import com.verto.models.LanguageModel;
+import com.verto.models.TranslationModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -56,6 +57,16 @@ public class LanguageService {
         );
 
         return count == 1;
+    }
+
+    public Boolean isValid(String guid) {
+        Integer count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM languages WHERE guid = ?",
+                Integer.class,
+                guid
+        );
+
+        return count != null && count >= 1;
     }
 
 }
