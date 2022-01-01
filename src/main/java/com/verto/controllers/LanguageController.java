@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/languages")
+@RequestMapping("/api/languages")
 public class LanguageController {
 
     private final LanguageService languageService;
@@ -33,6 +33,11 @@ public class LanguageController {
     @GetMapping("/{guid}")
     public LanguageModel get(@PathVariable("guid") String guid) {
         return this.languageService.selectFromDatabase(guid);
+    }
+
+    @PatchMapping("/{guid}")
+    public void update(@PathVariable("guid") String guid, @RequestBody LanguageModel l) {
+        this.languageService.updateInDatabase(guid, l.getValue());
     }
 
     @DeleteMapping("/{guid}")

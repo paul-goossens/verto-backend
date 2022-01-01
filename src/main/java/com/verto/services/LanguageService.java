@@ -39,6 +39,16 @@ public class LanguageService {
         );
     }
 
+    public Boolean updateInDatabase(String guid, String value) {
+        int count = jdbcTemplate.update(
+                "UPDATE languages SET value = ? WHERE guid = ?",
+                value,
+                guid
+        );
+
+        return count >= 1;
+    }
+
     public Boolean deleteFromDatabase(String guid) {
         int count = jdbcTemplate.update(
                 "DELETE FROM languages WHERE guid = ?",

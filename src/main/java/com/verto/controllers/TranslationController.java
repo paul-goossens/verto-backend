@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/translations")
+@RequestMapping("/api/translations")
 public class TranslationController {
 
     private final TranslationService translationService;
@@ -37,6 +37,12 @@ public class TranslationController {
                 t.getIsGroup(),
                 t.getLanguageGuid()
         );
+    }
+
+    @PatchMapping("/{guid}")
+    public void update(@PathVariable("guid") String guid, @RequestBody TranslationModel t) {
+        t.setGuid(guid);
+        this.translationService.updateInDatabase(t);
     }
 
     @DeleteMapping("/{guid}")

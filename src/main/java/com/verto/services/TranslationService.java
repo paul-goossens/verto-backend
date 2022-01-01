@@ -46,7 +46,27 @@ public class TranslationService {
                 guid
         );
 
-        return count == 1;
+        return count >= 1;
+    }
+
+    public Boolean updateInDatabase(TranslationModel t) {
+        String sql = "";
+
+        if (t.getKey() != null) {
+            System.out.println(t.getKey());
+            sql += "key = '" + t.getKey() + "', ";
+        }
+
+        if (t.getValue() != null) {
+            System.out.println(t.getValue());
+            sql += "value = '" + t.getValue() + "', ";
+        }
+
+        sql = sql.substring(0, sql.length() - 2);
+        sql = "UPDATE translations SET " + sql + " WHERE guid = '" + t.getGuid() + "'";
+        int count = jdbcTemplate.update(sql);
+
+        return count >= 1;
     }
 
     private Boolean isDuplicate(TranslationModel t) {
