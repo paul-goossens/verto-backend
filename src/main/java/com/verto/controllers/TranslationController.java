@@ -40,7 +40,7 @@ public class TranslationController {
         }
 
         if (t.getIsGroup() && t.getValue() != null) {
-            throw new Exception("Property 'value' must be 'null' when 'isGroup' is 'true'");
+            throw new Exception("Property 'value' must equal 'null' when 'isGroup' equals 'true'");
         }
 
         if (t.getLanguageGuid() == null) {
