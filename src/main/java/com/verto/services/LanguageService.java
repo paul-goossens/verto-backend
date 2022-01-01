@@ -24,18 +24,18 @@ public class LanguageService {
         );
     }
 
-    public LanguageModel selectFromDatabase(String guid) {
-        return jdbcTemplate.queryForObject(
-                "SELECT guid, value FROM languages WHERE guid = ?",
-                new LanguageRowMapper(),
-                guid
-        );
-    }
-
     public List<LanguageModel> selectAllFromDatabase() {
         return jdbcTemplate.query(
                 "SELECT * FROM languages",
                 new LanguageRowMapper()
+        );
+    }
+
+    public LanguageModel selectFromDatabase(String guid) {
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM languages WHERE guid = ?",
+                new LanguageRowMapper(),
+                guid
         );
     }
 

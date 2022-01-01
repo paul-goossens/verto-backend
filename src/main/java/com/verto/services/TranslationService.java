@@ -40,6 +40,14 @@ public class TranslationService {
         );
     }
 
+    public TranslationModel selectFromDatabase(String guid) {
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM translations WHERE guid = ?",
+                new TranslationRowMapper(),
+                guid
+        );
+    }
+
     public Boolean deleteFromDatabase(String guid) {
         int count = jdbcTemplate.update(
                 "DELETE FROM translations WHERE guid = ?",

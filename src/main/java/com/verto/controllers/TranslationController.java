@@ -17,9 +17,14 @@ public class TranslationController {
         this.translationService = translationService;
     }
 
-    @GetMapping("/{languageGuid}")
+    @GetMapping("/{languageGuid}/language")
     public List<TranslationModel> list(@PathVariable("languageGuid") String languageGuid) {
         return this.translationService.selectAllFromDatabase(languageGuid);
+    }
+
+    @GetMapping("/{guid}")
+    public TranslationModel get(@PathVariable("guid") String guid) {
+        return this.translationService.selectFromDatabase(guid);
     }
 
     @PostMapping("/create")
