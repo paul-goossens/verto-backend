@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/languages")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class LanguageController {
 
     private final LanguageService languageService;

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/translations")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class TranslationController {
 
     private final TranslationService translationService;
