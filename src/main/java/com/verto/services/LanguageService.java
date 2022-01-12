@@ -18,9 +18,9 @@ public class LanguageService {
 
     public Integer insertIntoDatabase(LanguageModel l) {
         return jdbcTemplate.update(
-                "INSERT INTO languages(guid, value) VALUES (?, ?);",
-                l.getGuid(),
-                l.getValue()
+                "INSERT INTO languages(id, name) VALUES (?, ?);",
+                l.getId(),
+                l.getName()
         );
     }
 
@@ -31,38 +31,38 @@ public class LanguageService {
         );
     }
 
-    public LanguageModel selectFromDatabase(String guid) {
+    public LanguageModel selectFromDatabase(String id) {
         return jdbcTemplate.queryForObject(
-                "SELECT * FROM languages WHERE guid = ?",
+                "SELECT * FROM languages WHERE id = ?",
                 new LanguageRowMapper(),
-                guid
+                id
         );
     }
 
-    public Boolean updateInDatabase(String guid, String value) {
+    public Boolean updateInDatabase(String id, String name) {
         int count = jdbcTemplate.update(
-                "UPDATE languages SET value = ? WHERE guid = ?",
-                value,
-                guid
+                "UPDATE languages SET value = ? WHERE id = ?",
+                name,
+                id
         );
 
         return count >= 1;
     }
 
-    public Boolean deleteFromDatabase(String guid) {
+    public Boolean deleteFromDatabase(String id) {
         int count = jdbcTemplate.update(
-                "DELETE FROM languages WHERE guid = ?",
-                guid
+                "DELETE FROM languages WHERE id = ?",
+                id
         );
 
         return count == 1;
     }
 
-    public Boolean isValid(String guid) {
+    public Boolean isValid(String id) {
         Integer count = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM languages WHERE guid = ?",
+                "SELECT COUNT(*) FROM languages WHERE id = ?",
                 Integer.class,
-                guid
+                id
         );
 
         return count != null && count >= 1;

@@ -1,57 +1,27 @@
 package com.verto.models;
 
 public class TranslationModel {
-    private String guid;
-    private String key;
-    private String value;
-    private Boolean isGroup;
-    private String languageGuid;
+    private String id;
+    private String name;
 
-    public TranslationModel(String guid, String key, String value, Boolean isGroup, String languageGuid) {
-        this.guid = guid;
-        this.key = key;
-        this.value = value;
-        this.isGroup = isGroup;
-        this.languageGuid = languageGuid;
+    public TranslationModel(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public String getGuid() {
-        return guid;
+    public String getId() {
+        return id;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public Boolean getIsGroup() {
-        return this.isGroup;
-    }
-
-    public void setIsGroup(Boolean isGroup) {
-        this.isGroup = isGroup;
-    }
-
-    public String getLanguageGuid() {
-        return languageGuid;
-    }
-
-    public void setLanguageGuid(String languageGuid) {
-        this.languageGuid = languageGuid;
+    public void setName(String name) {
+        this.name = name;
     }
 }

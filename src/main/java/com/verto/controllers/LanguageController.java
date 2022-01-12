@@ -25,25 +25,25 @@ public class LanguageController {
 
     @PostMapping("/create")
     public LanguageModel create(@RequestBody LanguageModel l) {
-        String guid = UUID.randomUUID().toString();
-        l.setGuid(guid);
+        String id = UUID.randomUUID().toString();
+        l.setId(id);
         this.languageService.insertIntoDatabase(l);
-        return new LanguageModel(l.getGuid(), l.getValue());
+        return new LanguageModel(l.getId(), l.getName());
     }
 
-    @GetMapping("/{guid}")
-    public LanguageModel get(@PathVariable("guid") String guid) {
-        return this.languageService.selectFromDatabase(guid);
+    @GetMapping("/{id}")
+    public LanguageModel get(@PathVariable("id") String id) {
+        return this.languageService.selectFromDatabase(id);
     }
 
-    @PatchMapping("/{guid}")
-    public void update(@PathVariable("guid") String guid, @RequestBody LanguageModel l) {
-        this.languageService.updateInDatabase(guid, l.getValue());
+    @PatchMapping("/{id}")
+    public void update(@PathVariable("id") String id, @RequestBody LanguageModel l) {
+        this.languageService.updateInDatabase(id, l.getName());
     }
 
-    @DeleteMapping("/{guid}")
-    public void delete(@PathVariable("guid") String guid) {
-        this.languageService.deleteFromDatabase(guid);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") String id) {
+        this.languageService.deleteFromDatabase(id);
     }
 
 }
