@@ -1,27 +1,47 @@
 package com.verto.models;
 
 public class TranslationModel {
-    private String id;
-    private String name;
+    private String keyId;
+    private String key;
+    private String valueId;
+    private String value;
 
-    public TranslationModel(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public TranslationModel(String keyId, String key, String valueId, String value) {
+        this.keyId = keyId;
+        this.key = key;
+        this.valueId = valueId;
+        this.value = value;
     }
 
-    public String getId() {
-        return id;
+    public String getKeyId() {
+        return keyId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKeyId(String keyId) {
+        this.keyId = keyId;
     }
 
-    public String getName() {
-        return name;
+    public String getKey() {
+        return key;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getValueId() {
+        return valueId;
+    }
+
+    public void setValueId(String valueId) {
+        this.valueId = valueId;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

@@ -4,23 +4,15 @@ public class EntityModel {
     private String id;
     private String memberOf;
     private Boolean isGroup;
-    private String languageKeyId;
-    private String languageKey;
-    private String translationKeyId;
-    private String translationKey;
-    private String translationValueId;
-    private String translationValue;
+    private LanguageModel language;
+    private TranslationModel translation;
 
-    public EntityModel(String id, String memberOf, Boolean isGroup, String languageKeyId, String languageKey, String translationKeyId, String translationKey, String translationValueId, String translationValue) {
+    public EntityModel(String id, String memberOf, Boolean isGroup, LanguageModel language, TranslationModel translation) {
         this.id = id;
         this.memberOf = memberOf;
         this.isGroup = isGroup;
-        this.languageKeyId = languageKeyId;
-        this.languageKey = languageKey;
-        this.translationKeyId = translationKeyId;
-        this.translationKey = translationKey;
-        this.translationValueId = translationValueId;
-        this.translationValue = translationValue;
+        this.language = language;
+        this.translation = translation;
     }
 
     public String getId() {
@@ -47,51 +39,20 @@ public class EntityModel {
         this.isGroup = isGroup;
     }
 
-    public String getLanguageKeyId() {
-        return languageKeyId;
+    public LanguageModel getLanguage() {
+        return language;
     }
 
-    public void setLanguageKeyId(String languageKeyId) {
-        this.languageKeyId = languageKeyId;
+    public void setLanguage(LanguageModel language) {
+        this.language = language;
     }
 
-    public String getTranslationKeyId() {
-        return translationKeyId;
+    public TranslationModel getTranslation() {
+        return translation;
     }
 
-    public void setTranslationKeyId(String translationKeyId) {
-        this.translationKeyId = translationKeyId;
+    public void setTranslation(TranslationModel translation) {
+        this.translation = translation;
     }
 
-    public String getTranslationValueId() {
-        return translationValueId;
-    }
-
-    public void setTranslationValueId(String translationValueId) {
-        this.translationValueId = translationValueId;
-    }
-
-    public String getLanguageKey() {
-        return languageKey;
-    }
-
-    public void setLanguageKey(String languageKey) {
-        this.languageKey = languageKey;
-    }
-
-    public String getTranslationKey() {
-        return translationKey;
-    }
-
-    public void setTranslationKey(String translationKey) {
-        this.translationKey = translationKey;
-    }
-
-    public String getTranslationValue() {
-        return translationValue;
-    }
-
-    public void setTranslationValue(String translationValue) {
-        this.translationValue = translationValue;
-    }
 }

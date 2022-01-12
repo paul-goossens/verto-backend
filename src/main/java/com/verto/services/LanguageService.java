@@ -16,13 +16,13 @@ public class LanguageService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Integer insertIntoDatabase(LanguageModel l) {
-        return jdbcTemplate.update(
-                "INSERT INTO languages(id, name) VALUES (?, ?);",
-                l.getId(),
-                l.getName()
-        );
-    }
+//    public Integer insertIntoDatabase(LanguageModel l) {
+//        return jdbcTemplate.update(
+//                "INSERT INTO languages(id, name) VALUES (?, ?);",
+//                l.getId(),
+//                l.getName()
+//        );
+//    }
 
     public List<LanguageModel> selectAllFromDatabase() {
         return jdbcTemplate.query(

@@ -1,27 +1,27 @@
 package com.verto.models;
 
 public class LanguageModel {
-    private String id;
-    private String name;
+    private String keyId;
+    private String key;
 
-    public LanguageModel(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public LanguageModel(String keyId, String key) {
+        this.keyId = keyId;
+        this.key = key;
     }
 
-    public String getId() {
-        return id;
+    public String getKeyId() {
+        return keyId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKeyId(String keyId) {
+        this.keyId = keyId;
     }
 
-    public String getName() {
-        return name;
+    public String getKey() {
+        return key;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(String key) {
+        this.key = key;
     }
 }
